@@ -1,14 +1,7 @@
-KMTabSlider
-===========
+ Kabir's Venmo Challenge
+ ========================
 
-A custom view with a slider that allows for a user to tap or slide to the next control value.
 
-Implement the KMTabSliderDelegate Protocol and the method below will give the KMStatus enum index of which item is selected:
+ ###Requirements
 
-<code>
- -(void)KMTabSlider:(KMTabSlider *)KMTabSlider itemSelected:(KMStatus)itemSelected{
- 
-     NSLog(@"%d", itemSelected);
-     
- }
-</code>
+This application lets a user enter in a new (credit or debit) card for payments.  
