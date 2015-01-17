@@ -1,7 +1,6 @@
- Kabir's Venmo Challenge
- =====
+Kabir's Venmo Challenge
+=====
 
-
- ###Requirements
+### Requirements
 
 This application lets a user enter in a new (credit or debit) card for payments.  
