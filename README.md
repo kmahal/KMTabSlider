@@ -56,7 +56,7 @@ This project uses Cocoapods.
  * Not a framework or library, but just as important.  For many things including credit card text styling and cursor saving, there were some great posts on SO that helped with that
 
 
-KMCardEntryView
+KMCardEntryView Usage
 ----------------
 
 This is the custom class that I created for a user to input their credit card information.
@@ -71,4 +71,62 @@ The specific implementation is available in the .m file, which I hope you all ca
 ```objective-c
 -(void)getCurrentCardDataWithBlock:(KMCardDataResponseBlock)block
 ```
+
+Since a requirement is a submit button that can give the user feedback, I chose to use a block to pass the current context instead of implementing a protocol and delegate.  The submit button calls this method.
+
+```objective-c
+typedef void (^KMCardDataResponseBlock)(KMCardData *cardData, KMCardError *error);
+```
+
+The application checks for an error, and if it exists then it checks for the error type.  Error types include:
+```objective-c
+typedef enum {
+    
+    KMCardErrorCard = 1,
+    KMCardErrorDate = 2,
+    KMCardErrorCVV = 3,
+    KMCardErrorCardAndDate = 4,
+    KMCardErrorDateAndCVV = 5,
+    KMCardErrorAll = 6
+    
+} KMErrorType;
+```
+
+The application creates an error notification (similar to Venmo's currently) that is shown with the error info and then removed.
+
+
+If there is not an error then the user should use cardData, which has the following info:
+```objective-c
+
+@interface KMCardData : NSObject
+
+@property(nonatomic, assign) KMCardType cardType;
+
+@property (nonatomic, copy) NSString *cardNumber;
+
+@property (nonatomic, copy) NSString *redactedCardNumber;
+
+@property (nonatomic) int expirationMonth;
+
+@property (nonatomic) int expirationYear;
+
+@property (nonatomic, copy) NSString *cvv;
+
+@end
+```
+
+With Card Types:
+```objective-c
+typedef enum {
+    
+    KMCardTypeUnknown = -1,
+    KMCardTypeAmericanExpress = 1,
+    KMCardTypeDiscover = 2,
+    KMCardTypeJCB = 3,
+    KMCardTypeMasterCard = 4,
+    KMCardTypeVisa = 5
+    
+} KMCardType;
+```
+
 
