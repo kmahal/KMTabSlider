@@ -68,15 +68,19 @@ The specific implementation is available in the .m file, which I hope you all ca
 
 ##### Public methods
 
+
+###### Get The Card Data
+
 ```objective-c
 -(void)getCurrentCardDataWithBlock:(KMCardDataResponseBlock)block
 ```
 
-Since a requirement is a submit button that can give the user feedback, I chose to use a block to pass the current context instead of implementing a protocol and delegate.  The submit button calls this method.
+Since a requirement is a submit button that can give the user feedback, I chose to use a block to pass the current context instead of implementing a protocol and delegate.  The submit button calls this method.  Below is the block type:
 
 ```objective-c
 typedef void (^KMCardDataResponseBlock)(KMCardData *cardData, KMCardError *error);
 ```
+
 
 The application checks for an error, and if it exists then it checks for the error type.  Error types include:
 ```objective-c
@@ -101,15 +105,10 @@ If there is not an error then the user should use cardData, which has the follow
 @interface KMCardData : NSObject
 
 @property(nonatomic, assign) KMCardType cardType;
-
 @property (nonatomic, copy) NSString *cardNumber;
-
 @property (nonatomic, copy) NSString *redactedCardNumber;
-
 @property (nonatomic) int expirationMonth;
-
 @property (nonatomic) int expirationYear;
-
 @property (nonatomic, copy) NSString *cvv;
 
 @end
@@ -128,5 +127,45 @@ typedef enum {
     
 } KMCardType;
 ```
+
+The application then shows a success notification and clears out the view's fields.
+
+
+
+###### Other methods
+
+KMCardEntryView also works with CardIO and can take in the information from a scan:
+
+```objective-c
+-(void)insertCardIOData:(CardIOCreditCardInfo *)info;
+```
+
+If the application wants the user to restart the entry:
+
+```objective-c
+-(void)clearAllFields;
+```
+
+Or to close the number entry keyboard:
+
+```objective-c
+-(void)resignAllResponders;
+```
+
+
+
+Security
+----------------
+
+Credit card information is sensitive.  So when the application resigns active or goes into the foreground, a blurred image is overlayed on top of the screen to obfuscate any credit card information.
+
+
+Testing
+---------
+
+
+
+
+
 
 
