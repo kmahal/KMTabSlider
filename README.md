@@ -12,7 +12,7 @@ This application lets a user enter in a new (credit or debit) card for payments.
 Supported iOS Versions
 ---------
 
-This app is built for iOS 7 and newer.  With iOS 7 & 8 having 95% market share this is considered the most efficient use.
+This app is built for iOS 7 and newer, which is over 95% coverage, but is compatible with iOS 6.  Works on iPhone4S and newer.
 
 Requirements (copied directly)
 ---------
@@ -61,7 +61,7 @@ KMCardEntryView Usage
 
 This is the custom class that I created for a user to input their credit card information.
 
-I did a lot of research within apps that use credit cards to see what the industry has for their UX.  Apps like Uber and Sprig (just 2 examples) have one textfield which animates over the card entry textfield to show the expiration date and cvv fields.  I found that Stripe has a framework for use, but the design was stock.  Venmo has a clear design practice of full screen width, white textfields and keeping that aesthetic remained important and so I built my own that duplicates that functionality.
+I did a lot of research within apps that use credit cards to see what the industry has for their UX.  Apps like Uber and Sprig (just 2 examples) have one view which animates over the card entry textfield to show the expiration date and cvv fields.  Venmo has a clear design practice of full screen width, white textfields and keeping that aesthetic remained important and so I built my own that duplicates that functionality.
 
 The specific implementation is available in the .m file, which I hope you all can read and see how I built it.  
 
@@ -163,6 +163,11 @@ Credit card information is sensitive.  So when the application resigns active or
 Testing
 ---------
 
+Testing was done using Kiwi.  I've never done automated testing before, but set up Kiwi into my project and read about the testing process.  Kiwi is great for model testing, and as this application is not model intensive I was not able to find a way to create reasonable tests in a moderate amount of time.
+
+I also did reading on UI Automation frameworks like KIF which are really powerful.  To limit the time of this project however I did not dive into that, and wrote a simple Kiwi test.  I plan on reading up more about both and implementing them into my current work projects as well.
+
+In addition to the automated testing, I also ran through every requirement use case myself, testing corner cases and core functionality.
 
 
 
